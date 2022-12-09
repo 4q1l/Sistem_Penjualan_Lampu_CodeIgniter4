@@ -1,0 +1,2 @@
+Buat Beranda : produk lampu, navigasi, dan informasi penjual
+Buat Detail-Produk : Gambar, Deskripsi, Link ke WA

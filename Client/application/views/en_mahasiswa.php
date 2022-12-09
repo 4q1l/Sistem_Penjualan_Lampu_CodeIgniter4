@@ -14,8 +14,8 @@
 <body>
     <!-- buat area menu -->
     <nav class="area-menu">
-        <button id="btn_lihat" class="btn-primary">Lihat Data</button>
-        <button id="btn_refresh" class="btn-secondary" onclick="return setRefresh()">Refresh Data</button>
+        <button id="btn_lihat" class="btn-primary">Lihat_Data</button>
+        <button id="btn_refresh" class="btn-secondary" onclick="return setRefresh()">Refresh-Data</button>
     </nav>
 
     <!-- buat area untuk entry data mahasiswa -->
