@@ -105,11 +105,12 @@
 
         // buat fungsi untuk refresh
         function setRefresh() {
-            location.href = '<?php echo site_url("Mahasiswa/updatemahasiswa"); ?>';
+            location.href = '<?php echo site_url("Mahasiswa/updateMahasiswa"); ?>';
         }
-
+        
         //buat event untuk "btn_simpan"
         btn_simpan.addEventListener('click', function() {
+            location.href = '<?php echo site_url("Mahasiswa/setUpdate"); ?>';
             //inisialisasi object
             let lbl_npm = document.getElementById("lbl_npm");
             let txt_npm = document.getElementById("txt_npm");
@@ -182,14 +183,14 @@
             // jika semua komponen terisi
             if (err_npm.innerHTML === "" && nama[1] === "" && telepon[1] ===
                 "" && jurusan[1] === "") {
-                // panggil method setSave
-                setSave(txt_npm.value, txt_nama.value, txt_telepon.value, cbo_jurusan.value);
+                // panggil method setUpdate
+                setUpdate(txt_npm.value, txt_nama.value, txt_telepon.value, cbo_jurusan.value);
 
             }
             // alert(`Jurusan : ${cbo_jurusan.value}`)
         });
 
-        const setSave = (npm, nama, telepon, jurusan) => {
+        const setUpdate = (npm, nama, telepon, jurusan) => {
             // buat variabel untuk form
             let form = new FormData();
             // isi/tambah nilai untuk form
@@ -199,13 +200,13 @@
             form.append("jurusannya", jurusan);
 
             // Proses kirim data ke controller
-            fetch('<?php echo site_url("Mahasiswa/setSave"); ?>', {
-                    method: "POST",
+            fetch('<?php echo site_url("Mahasiswa/setUpdate"); ?>', {
+                    method: "PUT",
                     body: form
                 })
                 .then((response) => response.json())
                 .then((result) => alert(result.statusnya))
-                .catch((error) => alert("Data Gagal Dikirim !"))
+                .catch((error) => alert("Data Gagal Di Update !"))
 
         }
     </script>

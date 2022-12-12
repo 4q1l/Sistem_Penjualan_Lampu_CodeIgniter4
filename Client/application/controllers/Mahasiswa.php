@@ -15,29 +15,28 @@ class Mahasiswa extends CI_Controller
         // }
 
         $this->load->view('vw_mahasiswa', $data);
-        $this->load->view('upd_mahasiswa', $data);
     }
 
     public function update()
     {
 
         $data['tampil'] = json_decode($this->client->simple_get(APIMAHASISWA));
-
+        
         // foreach($data["tampil"] -> mahasiswa as $result)
         // {
-        //     echo $result->npm_mhs."<br>";
-        // }
-        $this->load->view('upd_mahasiswa', $data);
-    }
-
-    function setDelete()
-    {
-        //buat variabel json
-        $json = file_get_contents("php://input");
-        $hasil = json_decode($json);
-
-        $delete = json_decode($this->client->simple_delete(APIMAHASISWA, array("npm" => $hasil->npmnya)));
-
+            //     echo $result->npm_mhs."<br>";
+            // }
+            $this->load->view('upd_mahasiswa', $data);
+        }
+        
+        function setDelete()
+        {
+            //buat variabel json
+            $json = file_get_contents("php://input");
+            $hasil = json_decode($json);
+            
+            $delete = json_decode($this->client->simple_delete(APIMAHASISWA, array("npm" => $hasil->npmnya)));
+            
 
 
         // isi nilai err
@@ -51,10 +50,13 @@ class Mahasiswa extends CI_Controller
     {
         $this->load->view('en_mahasiswa');
     }
-
+    
     function updateMahasiswa()
     {
-        $this->load->view('upd_mahasiswa');
+        $data['tampil'] = json_decode($this->client->simple_get(APIMAHASISWA));
+
+
+        $this->load->view('upd_mahasiswa', $data);
     }
 
     // buat fungsi untuk simpan data mahasiswa
@@ -74,6 +76,26 @@ class Mahasiswa extends CI_Controller
         );
 
         // kirim hasil ke "vw_mahasiswa"
+        echo json_encode(array("statusnya" => $save->status));
+    }
+
+    // buat fungsi untuk update data mahasiswa
+    function setUpdate()
+    {
+        // baca nilai dari fetch
+        $data = array(
+            "npm" => $this->input->post("npmnya"),
+            "nama" => $this->input->post("namanya"),
+            "telepon" => $this->input->post("teleponnya"),
+            "jurusan" => $this->input->post("jurusannya"),
+            "token" => $this->input->post("npmnya"),
+        );
+
+        $save = json_decode(
+            $this->client->simple_put(APIMAHASISWA, $data)
+        );
+
+        // kirim hasil ke "upd_mahasiswa"
         echo json_encode(array("statusnya" => $save->status));
     }
 }
