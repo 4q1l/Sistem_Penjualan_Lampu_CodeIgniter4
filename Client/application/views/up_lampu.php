@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Data Mahasiswa</title>
+    <title>Tambah Data Lampu</title>
 
     <!-- import file "style.css" -->
     <link rel="stylesheet" href="<?php echo base_url("ext/style.css") ?>">
@@ -18,23 +18,23 @@
         <button id="btn_refresh" class="btn-secondary" onclick="return setRefresh()">Refresh Data</button>
     </nav>
 
-    <!-- buat area untuk entry data mahasiswa -->
+    <!-- buat area untuk entry data lampu -->
     <main class="area-grid">
         <section class="item-label1">
-            <label id="lbl_npm" for="txt_npm">
-                NPM Mahasiswa :
+            <label id="lbl_kode" for="txt_kode">
+                KODE Lampu :
             </label>
         </section>
         <section class="item-input1">
-            <input type="text" id="txt_npm" class="text-input" maxlength="9">
+            <input type="text" id="txt_kode" class="text-input" maxlength="9">
         </section>
         <section class="item-error1">
-            <p id="err_npm" class="error-info">Ini Error</p>
+            <p id="err_kode" class="error-info">Ini Error</p>
         </section>
 
         <section class="item-label2">
             <label id="lbl_nama" for="txt_nama">
-                Nama Mahasiswa :
+                Nama Lampu :
             </label>
         </section>
         <section class="item-input2">
@@ -45,26 +45,26 @@
         </section>
 
         <section class="item-label3">
-            <label id="lbl_telepon" for="txt_telepon">
-                Telepon Mahasiswa :
+            <label id="lbl_harga" for="txt_harga">
+                Harga Lampu :
             </label>
         </section>
         <section class="item-input3">
-            <input type="text" id="txt_telepon" class="text-input" maxlength="15"
+            <input type="text" id="txt_harga" class="text-input" maxlength="15"
             onkeypress="return setNumber(event)">
         </section>
         <section class="item-error3">
-            <p id="err_telepon" class="error-info"></p>
+            <p id="err_harga" class="error-info"></p>
         </section>
 
         <section class="item-label4">
-            <label id="lbl_jurusan" for="txt_jurusan">
-                Jurusan Mahasiswa :
+            <label id="lbl_tegangan" for="txt_tegangan">
+                Tegangan Lampu :
             </label>
         </section>
         <section class="item-input4">
-            <select id="cbo_jurusan" class="text-input">
-                <option value="-">Pilih Jurusan Mahasiswa</option>
+            <select id="cbo_tegangan" class="text-input">
+                <option value="-">Pilih Tegangan Lampu</option>
                 <option value="IF">Informatika</option>
                 <option value="TI">Teknologi Informasi</option>
                 <option value="SI">Sistem Informasi</option>
@@ -73,7 +73,7 @@
             </select>
         </section>
         <section class="item-error4">
-            <p id="err_jurusan" class="error-info"></p>
+            <p id="err_tegangan" class="error-info"></p>
         </section>
     </main>
 
@@ -87,15 +87,15 @@
 
     <script>
         // inisialisasi object dan ambil data
-        let txt_npm = document.getElementById("txt_npm");
+        let txt_kode = document.getElementById("txt_kode");
         let txt_nama = document.getElementById("txt_nama");
-        let txt_telepon = document.getElementById("txt_telepon");
-        let cbo_jurusan = document.getElementById("cbo_jurusan");
+        let txt_harga = document.getElementById("txt_harga");
+        let cbo_tegangan = document.getElementById("cbo_tegangan");
         let token = <?php echo $token; ?>;
 
-        txt_npm.value = <?php echo $npm; ?>;
+        txt_kode.value = <?php echo $kode; ?>;
         txt_nama.value = <?php echo $nama; ?>;
-        txt_telepon.value = <?php echo $telepon; ?>;
+        txt_harga.value = <?php echo $harga; ?>;
 
         // inisialisasi object
         let btn_lihat = document.getElementById("btn_lihat");
@@ -103,53 +103,53 @@
 
         // buat event untuk "btn_lihat"
         btn_lihat.addEventListener('click', function() {
-            // alihkan ke halaman view mahasiswa
+            // alihkan ke halaman view lampu
             location.href = '<?php echo base_url(); ?>'
         });
 
         // buat fungsi untuk refresh
         function setRefresh() {
-            location.href = '<?php echo site_url("Mahasiswa/updateMahasiswa"); ?>';
+            location.href = '<?php echo site_url("Lampu/updateLampu"); ?>';
         }
 
         //buat event untuk "btn_simpan"
         btn_simpan.addEventListener('click', function() {
             //inisialisasi object
-            let lbl_npm = document.getElementById("lbl_npm");
-            let txt_npm = document.getElementById("txt_npm");
-            let err_npm = document.getElementById("err_npm");
+            let lbl_kode = document.getElementById("lbl_kode");
+            let txt_kode = document.getElementById("txt_kode");
+            let err_kode = document.getElementById("err_kode");
 
             let lbl_nama = document.getElementById("lbl_nama");
             let txt_nama = document.getElementById("txt_nama");
             let err_nama = document.getElementById("err_nama");
 
-            let lbl_telepon = document.getElementById("lbl_telepon");
-            let txt_telepon = document.getElementById("txt_telepon");
-            let err_telepon = document.getElementById("err_telepon");
+            let lbl_harga = document.getElementById("lbl_harga");
+            let txt_harga = document.getElementById("txt_harga");
+            let err_harga = document.getElementById("err_harga");
 
-            let lbl_jurusan = document.getElementById("lbl_jurusan");
-            let txt_jurusan = document.getElementById("cbo_jurusan");
-            let err_jurusan = document.getElementById("err_jurusan");
+            let lbl_tegangan = document.getElementById("lbl_tegangan");
+            let txt_tegangan = document.getElementById("cbo_tegangan");
+            let err_tegangan = document.getElementById("err_tegangan");
 
-            //jika npm tidak di isi
-            if (txt_npm.value === "") {
-                err_npm.style.display = 'unset';
-                err_npm.innerHTML = "NPM Harus Diisi !";
-                lbl_npm.style.color = "#FF0000";
-                txt_npm.style.borderColor = "#FF0000";
+            //jika kode tidak di isi
+            if (txt_kode.value === "") {
+                err_kode.style.display = 'unset';
+                err_kode.innerHTML = "KODE Harus Diisi !";
+                lbl_kode.style.color = "#FF0000";
+                txt_kode.style.borderColor = "#FF0000";
             }
-            //jika npm diisi
+            //jika kode diisi
             else {
-                err_npm.style.display = 'none';
-                err_npm.innerHTML = "";
-                lbl_npm.style.color = "unset";
-                txt_npm.style.borderColor = "unset";
+                err_kode.style.display = 'none';
+                err_kode.innerHTML = "";
+                lbl_kode.style.color = "unset";
+                txt_kode.style.borderColor = "unset";
             }
 
             // ternary operator
             const nama = (txt_nama.value === "") ? [
                 err_nama.style.display = 'unset',
-                err_nama.innerHTML = "Nama Mahasiswa Harus Diisi !",
+                err_nama.innerHTML = "Nama Lampu Harus Diisi !",
                 lbl_nama.style.color = "#FF0000",
                 txt_nama.style.borderColor = "#FF0000"
             ] : [
@@ -159,51 +159,51 @@
                 txt_nama.style.borderColor = "unset"
             ]
 
-            const telepon = (txt_telepon.value === "") ? [
-                err_telepon.style.display = 'unset',
-                err_telepon.innerHTML = "Telepon Mahasiswa Harus Diisi !",
-                lbl_telepon.style.color = "#FF0000",
-                txt_telepon.style.borderColor = "#FF0000"
+            const harga = (txt_harga.value === "") ? [
+                err_harga.style.display = 'unset',
+                err_harga.innerHTML = "Harga Lampu Harus Diisi !",
+                lbl_harga.style.color = "#FF0000",
+                txt_harga.style.borderColor = "#FF0000"
             ] : [
-                err_telepon.style.display = 'none',
-                err_telepon.innerHTML = "",
-                lbl_telepon.style.color = "unset",
-                txt_telepon.style.borderColor = "unset"
+                err_harga.style.display = 'none',
+                err_harga.innerHTML = "",
+                lbl_harga.style.color = "unset",
+                txt_harga.style.borderColor = "unset"
             ]
 
-            const jurusan = (cbo_jurusan.selectedIndex === 0) ? [
-                err_jurusan.style.display = 'unset',
-                err_jurusan.innerHTML = "jurusan Mahasiswa Harus Dipilih !",
-                lbl_jurusan.style.color = "#FF0000",
-                cbo_jurusan.style.borderColor = "#FF0000"
+            const tegangan = (cbo_tegangan.selectedIndex === 0) ? [
+                err_tegangan.style.display = 'unset',
+                err_tegangan.innerHTML = "tegangan Lampu Harus Dipilih !",
+                lbl_tegangan.style.color = "#FF0000",
+                cbo_tegangan.style.borderColor = "#FF0000"
             ] : [
-                err_jurusan.style.display = 'none',
-                err_jurusan.innerHTML = "",
-                lbl_jurusan.style.color = "unset",
-                cbo_jurusan.style.borderColor = "unset"
+                err_tegangan.style.display = 'none',
+                err_tegangan.innerHTML = "",
+                lbl_tegangan.style.color = "unset",
+                cbo_tegangan.style.borderColor = "unset"
             ]
 
             // jika semua komponen terisi
-            if (err_npm.innerHTML === "" && nama[1] === "" && telepon[1] ===
-                "" && jurusan[1] === "") {
+            if (err_kode.innerHTML === "" && nama[1] === "" && harga[1] ===
+                "" && tegangan[1] === "") {
                 // panggil method setSave
-                setSave(txt_npm.value, txt_nama.value, txt_telepon.value, cbo_jurusan.value);
+                setSave(txt_kode.value, txt_nama.value, txt_harga.value, cbo_tegangan.value);
 
             }
-            // alert(`Jurusan : ${cbo_jurusan.value}`)
+            // alert(`Tegangan : ${cbo_tegangan.value}`)
         });
 
-        const setSave = (npm, nama, telepon, jurusan) => {
+        const setSave = (kode, nama, harga, tegangan) => {
             // buat variabel untuk form
             let form = new FormData();
             // isi/tambah nilai untuk form
-            form.append("npmnya", npm);
+            form.append("kodenya", kode);
             form.append("namanya", nama);
-            form.append("teleponnya", telepon);
-            form.append("jurusannya", jurusan);
+            form.append("harganya", harga);
+            form.append("tegangannya", tegangan);
 
             // Proses kirim data ke controller
-            fetch('<?php echo site_url("Mahasiswa/setSave"); ?>', {
+            fetch('<?php echo site_url("Lampu/setSave"); ?>', {
                     method: "POST",
                     body: form
                 })

@@ -4,26 +4,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 require APPPATH."libraries/Server.php";
 
-class Mahasiswa extends Server {
+class Lampu extends Server {
 
     //buat konstruktor
     public function __construct()
         {
                 parent::__construct();
-                 //panggil model "Mmahasiswa"
-                $this->load->model("Mmahasiswa","model",TRUE);
+                 //panggil model "Mlampu"
+                $this->load->model("Mlampu","model",TRUE);
         }
 
 	//buat fungsi "GET"
     function service_get()
     {
-        //ambil parameter token "(npm)"
-        $token = $this->get("npm");
+        //ambil parameter token "(kode)"
+        $token = $this->get("kode");
         
         //panggil fungsi "get_data"
         $hasil = $this->model->get_data(base64_encode($token));
 
-        $this->response(array("mahasiswa" =>
+        $this->response(array("lampu" =>
         $hasil),200);
 
     }
@@ -34,24 +34,24 @@ class Mahasiswa extends Server {
        
         //ambil parameter token data yang akan diisi
         $data = array(
-            "npm" => $this->post("npm"),
+            "kode" => $this->post("kode"),
             "nama" => $this->post("nama"),
-            "telepon" => $this->post("telepon"),
-            "jurusan" => $this->post("jurusan"),
-            "token" => base64_encode($this->post("npm")),
+            "harga" => $this->post("harga"),
+            "tegangan" => $this->post("tegangan"),
+            "token" => base64_encode($this->post("kode")),
         );
         // panggil method "save data"
-        $hasil = $this->model->save_data($data["npm"],
-        $data["nama"],$data["telepon"],$data["jurusan"],$data["token"]);
+        $hasil = $this->model->save_data($data["kode"],
+        $data["nama"],$data["harga"],$data["tegangan"],$data["token"]);
         // jika hasil = 0
         if($hasil == 0 )
         {
-            $this->response(array("status" =>"Data Mahasiswa Berhasil Disimpan"),200);
+            $this->response(array("status" =>"Data lampu Berhasil Disimpan"),200);
         }
         // jika hasil != 0
         else
         {
-            $this->response(array("status" =>"Data Mahasiswa Gagal Disimpan !"),200);
+            $this->response(array("status" =>"Data lampu Gagal Disimpan !"),200);
         }
 
  
@@ -59,51 +59,51 @@ class Mahasiswa extends Server {
     //buat fungsi "PUT"
     function service_put()
     {
-     //panggil model "Mmahasiswa"
-     $this->load->model("Mmahasiswa","model",true);
+     //panggil model "Mlampu"
+     $this->load->model("Mlampu","model",true);
      //ambil parameter token data yang akan diisi
      $data = array(
-         "npm" => $this->put("npm"),
+         "kode" => $this->put("kode"),
          "nama" => $this->put("nama"),
-         "telepon" => $this->put("telepon"),
-         "jurusan" => $this->put("jurusan"),
+         "harga" => $this->put("harga"),
+         "tegangan" => $this->put("tegangan"),
          "token" => base64_encode($this->put("token")),
      );   
 
       // panggil method "update_data"
       $hasil = $this->model->update_data($data
-      ["npm"],$data["nama"],$data["telepon"],$data["jurusan"],$data["token"]);
+      ["kode"],$data["nama"],$data["harga"],$data["tegangan"],$data["token"]);
 
       //jika hasil == 0
         if($hasil == 0 )
         {
-            $this->response(array("status" =>"Data Mahasiswa Berhasil Diubah"),200);
+            $this->response(array("status" =>"Data lampu Berhasil Diubah"),200);
         }
         // jika hasil != 0
         else
         {
-            $this->response(array("status" =>"Data Mahasiswa Gagal Diubah !"),200);
+            $this->response(array("status" =>"Data lampu Gagal Diubah !"),200);
         }
     }
     //buat fungsi "DELETE"
     function service_delete()
     {
-        // panggil model "Mmahasiswa"
-        $this->load->model("Mmahasiswa","model",TRUE);
-        //ambil parameter token "(npm)"
-        $token = $this->delete("npm");
+        // panggil model "Mlampu"
+        $this->load->model("Mlampu","model",TRUE);
+        //ambil parameter token "(kode)"
+        $token = $this->delete("kode");
         //panggil fungsi "delete_data"
         $hasil = $this->model->delete_data
         (base64_encode($token));
         if($hasil == 1)
         {
-            $this->response(array("status" =>"Data Mahasiswa Berhasil Dihapus"),200);
+            $this->response(array("status" =>"Data lampu Berhasil Dihapus"),200);
         }
         // jika proses delete gagal
         else
         {
             $this->response(array("status" => "Data
-            Mahasiswa Gagal Dihapus !"),200);
+            lampu Gagal Dihapus !"),200);
         }
 
     }

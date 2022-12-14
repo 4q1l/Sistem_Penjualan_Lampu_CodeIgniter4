@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tampil Data Mahasiswa</title>
+    <title>Tampil Data Lampu</title>
     <!-- import fontawesome (CSS) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -24,10 +24,10 @@
     <tr>
             <th style="width: 10%;">Aksi</th>
             <th style="width: 5%;">No</th>
-            <th style="width: 10%;">NPM</th>
+            <th style="width: 10%;">KODE</th>
             <th style="width: 50%;">Nama</th>
-            <th style="width: 15%;">Telepon</th>
-            <th style="width: 10%;">Jurusan</th>
+            <th style="width: 15%;">Harga</th>
+            <th style="width: 10%;">Tegangan</th>
         </tr>
     </thead>
         <!-- isi tabel -->
@@ -37,19 +37,19 @@
     <?php
         // set nilai awal no
         $no = 1; 
-        foreach($tampil->mahasiswa as $result)
+        foreach($tampil->lampu as $result)
          {
     ?>
         <tr>
             <td style="text-align: center ;"  >
                 <nav class="area-aksi">
-                <button class="btn-ubah" id="btn_ubah" title="Ubah Data" onclick="return gotoUpdate('<?php echo $result ->npm_mhs; ?>')">
+                <button class="btn-ubah" id="btn_ubah" title="Ubah Data" onclick="return gotoUpdate('<?php echo $result ->kode_lampu; ?>')">
                 <i class="fa-solid fa-pen"></i>
                 </button>
 
                 <button class="btn-hapus" id="btn_hapus" title="Hapus Data" 
                 
-                onclick="return gotoDelete('<?php echo $result->npm_mhs; ?>')">
+                onclick="return gotoDelete('<?php echo $result->kode_lampu; ?>')">
                 <i class="fa-solid fa-trash-can"></i>
                 </button>
                 </nav>
@@ -60,18 +60,18 @@
             </td>
             
             <td style="text-align: center ;">
-                <?php echo $result->npm_mhs; ?>
+                <?php echo $result->kode_lampu; ?>
             </td>
 
             <td style="text-align: justify ;"> 
-                <?php echo $result->nama_mhs;?>
+                <?php echo $result->nama_lampu;?>
             </td>
 
             <td style="text-align: center ;"> 
-                <?php echo $result->telepon_mhs; ?>
+                <?php echo $result->harga_lampu; ?>
             </td>
             <td style="text-align: center ;"> 
-                <?php echo $result->jurusan_mhs; ?>
+                <?php echo $result->tegangan_lampu; ?>
             </td> 
         </tr>
     <?php
@@ -108,8 +108,8 @@
         // this.innerHTML = "<strong> Add Data </strong>"
         // this.innerText = "<strong> Add Data </strong>"
         
-        // alihkan ke halaman/Controller (Mahasiswa fungsi "addMahasiswa")
-        location.href='<?php echo site_url("Mahasiswa/addMahasiswa")?>'
+        // alihkan ke halaman/Controller (Lampu fungsi "addLampu")
+        location.href='<?php echo site_url("Lampu/addLampu")?>'
       })
       //btn_tambah.addEventListener('click',
       //setRefresh)
@@ -121,22 +121,22 @@
 
       // buat fungsi untuk ke halaman ubah
 
-      function gotoUpdate(npm)
+      function gotoUpdate(kode)
       {
         location.href='<?php echo site_url
-        ("Mahasiswa/updateMahasiswa")?>'+'/'+npm
+        ("Lampu/updateLampu")?>'+'/'+kode
       }
 
       //buat fungsi untuk hapus data
-      function gotoDelete(npm)
+      function gotoDelete(kode)
       {
-        if (confirm ("Data Mahasiswa "+npm+" Ingin Dihapus ?") === true )
+        if (confirm ("Data Lampu "+kode+" Ingin Dihapus ?") === true )
         {
 
             // alert("Data Berhasil Dihapus")
             
             // panggil fungsi setDelete
-            setDelete(npm);
+            setDelete(kode);
         }
         // else
         // {
@@ -144,15 +144,15 @@
         // }
       }
 
-      function setDelete(npm)
+      function setDelete(kode)
       {
         // buat variabel/konstanta data
         const data = {
-            "npmnya" : npm
+            "kodenya" : kode
         }
 
         // kirim data async dengan fetch
-        fetch('<?php echo site_url("Mahasiswa/setDelete"); ?>',
+        fetch('<?php echo site_url("Lampu/setDelete"); ?>',
         {
             method : "POST",
             headers: {
