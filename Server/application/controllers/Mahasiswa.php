@@ -17,10 +17,11 @@ class Mahasiswa extends Server {
 	//buat fungsi "GET"
     function service_get()
     {
-       
+        //ambil parameter token "(npm)"
+        $token = $this->get("npm");
         
         //panggil fungsi "get_data"
-       $hasil = $this->model->get_data();
+        $hasil = $this->model->get_data(base64_encode($token));
 
         $this->response(array("mahasiswa" =>
         $hasil),200);

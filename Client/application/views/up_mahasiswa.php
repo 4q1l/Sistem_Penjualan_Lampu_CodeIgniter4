@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Data Mahasiswa</title>
+    <title>Tambah Data Mahasiswa</title>
 
     <!-- import file "style.css" -->
     <link rel="stylesheet" href="<?php echo base_url("ext/style.css") ?>">
@@ -18,10 +18,6 @@
         <button id="btn_refresh" class="btn-secondary" onclick="return setRefresh()">Refresh Data</button>
     </nav>
 
-    <?php
-        foreach($tampil->mahasiswa as $result){
-    ?>
-
     <!-- buat area untuk entry data mahasiswa -->
     <main class="area-grid">
         <section class="item-label1">
@@ -30,7 +26,7 @@
             </label>
         </section>
         <section class="item-input1">
-            <input type="text" id="txt_npm" class="text-input" maxlength="9" value="<?php echo $result->npm_mhs; ?>">
+            <input type="text" id="txt_npm" class="text-input" maxlength="9">
         </section>
         <section class="item-error1">
             <p id="err_npm" class="error-info">Ini Error</p>
@@ -42,7 +38,7 @@
             </label>
         </section>
         <section class="item-input2">
-            <input type="text" id="txt_nama" class="text-input" maxlength="100" value="<?php echo $result->nama_mhs;?>">
+            <input type="text" id="txt_nama" class="text-input" maxlength="100">
         </section>
         <section class="item-error2">
             <p id="err_nama" class="error-info"></p>
@@ -55,7 +51,7 @@
         </section>
         <section class="item-input3">
             <input type="text" id="txt_telepon" class="text-input" maxlength="15"
-            onkeypress="return setNumber(event)" value="<?php echo $result->telepon_mhs; ?>">
+            onkeypress="return setNumber(event)">
         </section>
         <section class="item-error3">
             <p id="err_telepon" class="error-info"></p>
@@ -68,7 +64,7 @@
         </section>
         <section class="item-input4">
             <select id="cbo_jurusan" class="text-input">
-                <option value="-"><?php echo $result->jurusan_mhs; ?></option>
+                <option value="-">Pilih Jurusan Mahasiswa</option>
                 <option value="IF">Informatika</option>
                 <option value="TI">Teknologi Informasi</option>
                 <option value="SI">Sistem Informasi</option>
@@ -80,19 +76,27 @@
             <p id="err_jurusan" class="error-info"></p>
         </section>
     </main>
-    <?php
-         }
-    ?>
 
     <!-- buat area menu -->
     <nav class="area-menu" style="margin-top: 10px;">
-        <button id="btn_simpan" class="btn-primary">Simpan Data</button>
+        <button id="btn_ubah" class="btn-primary">Ubah Data</button>
     </nav>
 
     <!-- import file "script.js -->
     <script src="<?php echo base_url("ext/script.js"); ?>"></script>
 
     <script>
+        // inisialisasi object dan ambil data
+        let txt_npm = document.getElementById("txt_npm");
+        let txt_nama = document.getElementById("txt_nama");
+        let txt_telepon = document.getElementById("txt_telepon");
+        let cbo_jurusan = document.getElementById("cbo_jurusan");
+        let token = <?php echo $token; ?>;
+
+        txt_npm.value = <?php echo $npm; ?>;
+        txt_nama.value = <?php echo $nama; ?>;
+        txt_telepon.value = <?php echo $telepon; ?>;
+
         // inisialisasi object
         let btn_lihat = document.getElementById("btn_lihat");
         let btn_simpan = document.getElementById("btn_simpan");
@@ -107,10 +111,9 @@
         function setRefresh() {
             location.href = '<?php echo site_url("Mahasiswa/updateMahasiswa"); ?>';
         }
-        
+
         //buat event untuk "btn_simpan"
         btn_simpan.addEventListener('click', function() {
-            location.href = '<?php echo site_url("Mahasiswa/setUpdate"); ?>';
             //inisialisasi object
             let lbl_npm = document.getElementById("lbl_npm");
             let txt_npm = document.getElementById("txt_npm");
@@ -183,14 +186,14 @@
             // jika semua komponen terisi
             if (err_npm.innerHTML === "" && nama[1] === "" && telepon[1] ===
                 "" && jurusan[1] === "") {
-                // panggil method setUpdate
-                setUpdate(txt_npm.value, txt_nama.value, txt_telepon.value, cbo_jurusan.value);
+                // panggil method setSave
+                setSave(txt_npm.value, txt_nama.value, txt_telepon.value, cbo_jurusan.value);
 
             }
             // alert(`Jurusan : ${cbo_jurusan.value}`)
         });
 
-        const setUpdate = (npm, nama, telepon, jurusan) => {
+        const setSave = (npm, nama, telepon, jurusan) => {
             // buat variabel untuk form
             let form = new FormData();
             // isi/tambah nilai untuk form
@@ -200,13 +203,13 @@
             form.append("jurusannya", jurusan);
 
             // Proses kirim data ke controller
-            fetch('<?php echo site_url("Mahasiswa/setUpdate"); ?>', {
-                    method: "PUT",
+            fetch('<?php echo site_url("Mahasiswa/setSave"); ?>', {
+                    method: "POST",
                     body: form
                 })
                 .then((response) => response.json())
                 .then((result) => alert(result.statusnya))
-                .catch((error) => alert("Data Gagal Di Update !"))
+                .catch((error) => alert("Data Gagal Dikirim !"))
 
         }
     </script>
