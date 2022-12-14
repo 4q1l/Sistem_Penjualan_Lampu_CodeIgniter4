@@ -31,7 +31,7 @@
         </tr>
     </thead>
         <!-- isi tabel -->
-    <tbody>   
+    <tbody>   ;''
        
     <!-- proses looping data -->
     <?php
