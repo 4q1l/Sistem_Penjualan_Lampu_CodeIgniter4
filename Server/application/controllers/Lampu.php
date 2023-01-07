@@ -20,6 +20,8 @@ class Lampu extends Server
     // buat service "GET"
     function service_get()
     {
+        
+
         // ambil parameter token "kode"
         $token = $this->get("kode");
 
@@ -28,6 +30,15 @@ class Lampu extends Server
         // hasil respon
         $this->response(array("lampu" => $hasil), 200);
     }
+
+    // function service_get()
+    // {
+    //     $username = $this->get("username");
+
+    //     $hasil = $this->model->get_data($username);
+
+    //     $this->response(array("auth" => $hasil), 200);
+    // }
 
     // buat service "POST"
     function service_post()
