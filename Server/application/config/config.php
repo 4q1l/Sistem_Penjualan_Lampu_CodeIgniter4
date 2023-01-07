@@ -23,7 +23,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
+<<<<<<< HEAD
 $config['base_url'] = '';
+=======
+$config['base_url'] = 'http://localhost/PWBS-GAB2/Server';
+>>>>>>> daec82beee4882ac1d339087a29688f9068d3ea0
 
 /*
 |--------------------------------------------------------------------------

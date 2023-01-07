@@ -54,7 +54,7 @@
             <label id="lbl_tegangan" for="txt_tegangan">Tegangan :</label>
         </section>
         <section class="item-input4">
-            <input type="text" class="text-input" id="cbo_tegangan" maxlength="10">
+            <input type="text" class="text-input" id="cbo_tegangan" maxlength="15" onkeypress="return setNumber(event)">
         </section>
         <section class="item-error4">
             <p class="error-info" id="err_tegangan">Wajib Di Isi!!!</p>

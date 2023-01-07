@@ -110,7 +110,11 @@ $config['rest_realm'] = 'REST API';
 |           authorization key
 |
 */
+<<<<<<< HEAD
 $config['rest_auth'] = 'basic';
+=======
+$config['rest_auth'] = false;
+>>>>>>> daec82beee4882ac1d339087a29688f9068d3ea0
 
 /*
 |--------------------------------------------------------------------------
@@ -126,7 +130,11 @@ $config['rest_auth'] = 'basic';
 | Note: If 'rest_auth' is set to 'session' then change 'auth_source' to the name of the session variable
 |
 */
+<<<<<<< HEAD
 $config['auth_source'] = '';
+=======
+$config['auth_source'] = 'ldap';
+>>>>>>> daec82beee4882ac1d339087a29688f9068d3ea0
 
 /*
 |--------------------------------------------------------------------------
@@ -210,7 +218,11 @@ $config['auth_library_function'] = '';
 | Array of usernames and passwords for login, if ldap is configured this is ignored
 |
 */
+<<<<<<< HEAD
 $config['rest_valid_logins'] = ["ftik"=>"if","pwbs"=>"rest","admin"=>"admin"];
+=======
+$config['rest_valid_logins'] = [];
+>>>>>>> daec82beee4882ac1d339087a29688f9068d3ea0
 
 /*
 |--------------------------------------------------------------------------
@@ -298,7 +310,11 @@ $config['rest_database_group'] = 'default';
 | The table name in your database that stores API keys
 |
 */
+<<<<<<< HEAD
 $config['rest_keys_table'] = 'tb_auth';
+=======
+$config['rest_keys_table'] = 'keys';
+>>>>>>> daec82beee4882ac1d339087a29688f9068d3ea0
 
 /*
 |--------------------------------------------------------------------------
@@ -323,7 +339,11 @@ $config['rest_keys_table'] = 'tb_auth';
 |   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 |
 */
+<<<<<<< HEAD
 $config['rest_enable_keys'] = true;
+=======
+$config['rest_enable_keys'] = false;
+>>>>>>> daec82beee4882ac1d339087a29688f9068d3ea0
 
 /*
 |--------------------------------------------------------------------------
@@ -376,7 +396,11 @@ $config['rest_key_length'] = 40;
 | 2012/06/12. See RFC 6648 specification for more details
 |
 */
+<<<<<<< HEAD
 $config['rest_key_name'] = 'GAB2-API';
+=======
+$config['rest_key_name'] = 'X-API-KEY';
+>>>>>>> daec82beee4882ac1d339087a29688f9068d3ea0
 
 /*
 |--------------------------------------------------------------------------
