@@ -110,7 +110,7 @@ $config['rest_realm'] = 'REST API';
 |           authorization key
 |
 */
-$config['rest_auth'] = 'basic';
+$config['rest_auth'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -210,7 +210,7 @@ $config['auth_library_function'] = '';
 | Array of usernames and passwords for login, if ldap is configured this is ignored
 |
 */
-$config['rest_valid_logins'] = ["ftik"=>"if","pwbs"=>"rest","admin"=>"admin"];
+$config['rest_valid_logins'] = "";
 
 /*
 |--------------------------------------------------------------------------
@@ -376,7 +376,7 @@ $config['rest_key_length'] = 40;
 | 2012/06/12. See RFC 6648 specification for more details
 |
 */
-$config['rest_key_name'] = 'GAB2-API';
+$config['rest_key_name'] = 'KEY-API';
 
 /*
 |--------------------------------------------------------------------------
@@ -545,7 +545,7 @@ $config['rest_language'] = 'english';
 | will access it through a browser
 |
 */
-$config['check_cors'] = false;
+$config['check_cors'] = true;
 
 /*
 |--------------------------------------------------------------------------
