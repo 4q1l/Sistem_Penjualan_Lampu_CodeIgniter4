@@ -28,7 +28,7 @@ class Login extends CI_Controller {
 			"pass" => $this->input->post("passnya"),
 		);
 
-		$save = json_decode($this->client->simple_post(APILAMPU, $data));
+		$save = json_decode($this->Client->simple_post(APILAMPU, $data));
 
 		if ($save->result == 0) {
 			echo json_encode(array("statusnya" => $save->error));
