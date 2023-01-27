@@ -1,0 +1,82 @@
+:root
+{
+    --th_table : #e3e3e3;
+    --set_padding : 10px;
+    --set_border : 1px solid #333333;
+    --putih : #FFFFFF;
+}
+
+table
+{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th
+{
+    background: var(--th_table);
+    padding: calc(var(--set_padding)*2);
+    font-size: 1.5vw;
+}
+
+td
+{
+    background: var(--putih);
+    padding: var(--set_padding);
+}
+
+th, td
+{
+    height: 40px;
+    border: var(--set_border);
+    
+}
+.text-center{
+    text-align: center;
+}
+
+.area-menu
+{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    /* flex-direction: column;
+
+    align-items: center;
+    height: 300px;
+    background: #FFCC00; */
+}
+
+.btn-primary
+{
+    background: #333333;
+    height: 40px;
+    width: 120px;
+    margin-right: var(--set_padding);
+    border-radius: 25px;
+    border: var(--set_border);
+    outline: 0;
+    color: var(--putih);
+    cursor: pointer;
+}
+
+.btn-secondary
+{
+    background: var(--putih);
+    height: 40px;
+    width: 120px;
+    margin-left: var(--set_padding);
+    border-radius: 25px;
+    border: var(--set_border);
+    outline: 0;
+    color: #333333;
+    cursor: pointer;
+}
+
+.area-aksi
+{
+    width: 100%;
+    display: flex;
+}
+
